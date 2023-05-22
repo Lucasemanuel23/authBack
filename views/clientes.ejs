@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clientes</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Clientes</h1>
+    <p>Welcome to Clientes</p>
+
+    <form method="POST" action="/clientes/<%- acao %>/<%- clientes[0]._id%>" role="form">
+         
+      <input type="text" name="nome"  placeholder="Nome" value="<%- clientes[0].nome %>" class="form-control"/>
+         
+      <input type="text" name="cpf" placeholder="CPF" value="<%- clientes[0].cpf %>" class="form-control"/>
+         
+      <input type="text" name="telefone" value="<%- clientes[0].telefone %>" placeholder="Telefone" class="form-control"/>
+         
+      <input type="text" name="email" placeholder="EMAIL" value="<%- clientes[0].email%>" class="form-control"/>
+         
+      <input type="text" name="cep" placeholder="CEP" value="<%- clientes[0].cep %>" class="form-control"/>
+
+      <button type="submit" class="btn btn-default">Incluir</button>
+     
+    
+  </form>
+
+
+    <table class="table table-bordered table-striped">
+      <thead><tr>
+          <th>CPF</th>
+          <th>Nome</th>
+          <th>CEP</th>
+          <th>EMAIL</th>
+          <th>FONE</th>
+      </tr>
+      </thead>
+      
+      <tbody>
+          <% 
+               if(clientes){clientes.forEach(function(cliente, index) { %>
+            <tr>
+              <td><a href="/clientes/update/<%- cliente._id %>"><%- cliente.cpf %></a></td>
+              <td><%- cliente.nome %></td>
+              <td><%- cliente.cep %></td>
+              <td><%- cliente.email %></td>
+              <td><%- cliente.telefone %></td>
+              <td><a href="/clientes/apagar/<%- cliente._id %>" onclick="return confirm('Deseja deletar?')">X</a></td>               
+            </tr>
+          <% })} %>
+      </tbody>
+      
+      
+  </table>
+
+  </body>
+</html>
